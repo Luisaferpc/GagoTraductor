@@ -1,0 +1,348 @@
+﻿@page "/admin"
+@inject HttpClient Http
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-sm border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">🔒 Panel de Administración - GagoTranslate</h4>
+                </div>
+                <div class="card-body">
+                    @if (!esAdmin)
+                    {
+                        <p class="text-muted">Ingresa con tus credenciales de administrador para gestionar el diccionario:</p>
+
+                        <div class="mb-3">
+                            <label class="form-label">Usuario:</label>
+                            <input type="text" class="form-control" @bind="usuarioInput" placeholder="Usuario admin" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña:</label>
+                            <input type="password" class="form-control" @bind="claveInput" placeholder="Contraseña" />
+                        </div>
+                        <button class="btn btn-warning w-100 text-dark fw-bold" @onclick="IntentarLoginAdmin">Validar Acceso</button>
+
+                        @if (!string.IsNullOrEmpty(mensajeLoginError))
+                        {
+                            <div class="alert alert-danger mt-3 mb-0">@mensajeLoginError</div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-success d-flex justify-content-between align-items-center mb-4">
+                            <span>✅ <strong>Bienvenido, Administrador</strong></span>
+                            <button class="btn btn-sm btn-outline-danger" @onclick="CerrarSesionAdmin">Cerrar Sesión</button>
+                        </div>
+
+                        <!-- MENÚ DE ACCIONES -->
+                        <div class="p-3 border rounded bg-light mb-4">
+                            <h6 class="text-primary fw-bold mb-3">¿Qué acción deseas realizar?</h6>
+                            <div class="d-grid gap-2 d-md-block">
+                                <button class="btn @(modoActivo == "crear" ? "btn-success" : "btn-outline-success") me-md-2" @onclick='() => CambiarModo("crear")'>Registrar Nueva</button>
+                                <button class="btn @(modoActivo == "modificar" ? "btn-primary" : "btn-outline-primary") me-md-2" @onclick='() => CambiarModo("modificar")'>Modificar</button>
+                                <button class="btn @(modoActivo == "eliminar" ? "btn-danger" : "btn-outline-danger")" @onclick='() => CambiarModo("eliminar")'>Eliminar</button>
+                            </div>
+                        </div>
+
+                        <!-- FORMULARIO: CREAR -->
+                        @if (modoActivo == "crear")
+                        {
+                            <div class="card p-3 border-success mb-3">
+                                <h6 class="text-success">Registrar nueva palabra</h6>
+                                <div class="mb-2">
+                                    <label class="form-label">Palabra en español:</label>
+                                    <input type="text" class="form-control" @bind="formEspañol" placeholder="Ej. Casa" />
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Código (Ej. ES):</label>
+                                    <input type="text" class="form-control" @bind="formCodigo" placeholder="Ej. ES" />
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Traducción Inglés:</label>
+                                    <input type="text" class="form-control" @bind="formIngles" placeholder="House" />
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Traducción Francés:</label>
+                                    <input type="text" class="form-control" @bind="formFrances" placeholder="Maison" />
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label">Traducción Alemán:</label>
+                                    <input type="text" class="form-control" @bind="formAleman" placeholder="Haus" />
+                                </div>
+                                <button class="btn btn-success mt-2" @onclick="EjecutarCrear">Guardar palabra</button>
+                            </div>
+                        }
+
+                        <!-- FORMULARIO: MODIFICAR (Búsqueda local por texto) -->
+                        @if (modoActivo == "modificar")
+                        {
+                            <div class="card p-3 border-primary mb-3">
+                                <h6 class="text-primary">Modificar Palabra Existente</h6>
+                                <div class="mb-2">
+                                    <label class="form-label">Palabra en Español a Buscar:</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" @bind="textoBusqueda" placeholder="Ej. Casa" />
+                                        <button class="btn btn-outline-primary" @onclick="BuscarPorTexto">Buscar</button>
+                                    </div>
+                                </div>
+
+                                @if (palabraEncontrada != null)
+                                {
+                                    <div class="alert alert-secondary mt-3">
+                                        <small class="text-dark"><strong>Palabra original encontrada (ID: @palabraEncontrada.IdPalabra):</strong></small><br>
+                                        <span>Español: <strong>@palabraEncontrada.PalabraEspanol</strong></span><br>
+                                        <span>Código: <strong>@palabraEncontrada.CodigoPalabra</strong></span>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <label class="form-label">Nueva Palabra en Español:</label>
+                                        <input type="text" class="form-control" @bind="formEspañol" />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Nuevo Código:</label>
+                                        <input type="text" class="form-control" @bind="formCodigo" />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Nuevo Inglés:</label>
+                                        <input type="text" class="form-control" @bind="formIngles" />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Nuevo Francés:</label>
+                                        <input type="text" class="form-control" @bind="formFrances" />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Nuevo Alemán:</label>
+                                        <input type="text" class="form-control" @bind="formAleman" />
+                                    </div>
+                                    <button class="btn btn-primary mt-2" @onclick="EjecutarModificar">Actualizar cambios</button>
+                                }
+                            </div>
+                        }
+
+                        <!-- FORMULARIO: ELIMINAR (Búsqueda local por texto) -->
+                        @if (modoActivo == "eliminar")
+                        {
+                            <div class="card p-3 border-danger mb-3">
+                                <h6 class="text-danger">Eliminar Palabra</h6>
+                                <div class="mb-2">
+                                    <label class="form-label">Palabra en Español a Buscar:</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" @bind="textoBusqueda" placeholder="Ej. Casa" />
+                                        <button class="btn btn-outline-danger" @onclick="BuscarPorTexto">Buscar</button>
+                                    </div>
+                                </div>
+
+                                @if (palabraEncontrada != null)
+                                {
+                                    <div class="alert alert-warning mt-3">
+                                        <small class="text-dark"><strong>¿Estás seguro de eliminar esta palabra (ID: @palabraEncontrada.IdPalabra)?</strong></small><br>
+                                        <span>Español: <strong>@palabraEncontrada.PalabraEspanol</strong></span><br>
+                                        <span>Código: <strong>@palabraEncontrada.CodigoPalabra</strong></span>
+                                    </div>
+                                    <button class="btn btn-danger mt-2" @onclick="EjecutarEliminar">Confirmar y Eliminar</button>
+                                }
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(mensajeOperacion))
+                        {
+                            <div class="alert alert-info mt-3">@mensajeOperacion</div>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    private string usuarioInput = string.Empty;
+    private string claveInput = string.Empty;
+    private string? mensajeLoginError;
+    private bool esAdmin = false;
+
+    private string modoActivo = string.Empty;
+    private string textoBusqueda = string.Empty;
+    private string formEspañol = string.Empty;
+    private string formCodigo = string.Empty;
+    private string formIngles = string.Empty;
+    private string formFrances = string.Empty;
+    private string formAleman = string.Empty;
+    private string? mensajeOperacion;
+
+    private PalabraDto? palabraEncontrada;
+
+    public class PalabraDto
+    {
+        public int IdPalabra { get; set; }
+        public string PalabraEspanol { get; set; } = string.Empty;
+        public string CodigoPalabra { get; set; } = string.Empty;
+    }
+
+    private async Task IntentarLoginAdmin()
+    {
+        if (string.IsNullOrWhiteSpace(usuarioInput) || string.IsNullOrWhiteSpace(claveInput))
+        {
+            mensajeLoginError = "Completa el usuario y la contraseña.";
+            return;
+        }
+
+        try
+        {
+            mensajeLoginError = null;
+            var respuesta = await Http.PostAsJsonAsync("api/Palabras/login", new { Usuario = usuarioInput.Trim(), Clave = claveInput });
+
+            if (respuesta.IsSuccessStatusCode)
+            {
+                esAdmin = true;
+                usuarioInput = string.Empty;
+                claveInput = string.Empty;
+            }
+            else
+            {
+                mensajeLoginError = "Usuario o contraseña incorrectos.";
+            }
+        }
+        catch
+        {
+            mensajeLoginError = "Error al conectar con el servidor.";
+        }
+    }
+
+    private void CerrarSesionAdmin()
+    {
+        esAdmin = false;
+        modoActivo = string.Empty;
+        mensajeOperacion = null;
+        palabraEncontrada = null;
+        textoBusqueda = string.Empty;
+    }
+
+    private void CambiarModo(string modo)
+    {
+        modoActivo = modo;
+        mensajeOperacion = null;
+        palabraEncontrada = null;
+        textoBusqueda = string.Empty;
+        formEspañol = string.Empty;
+        formCodigo = string.Empty;
+        formIngles = string.Empty;
+        formFrances = string.Empty;
+        formAleman = string.Empty;
+    }
+
+    private async Task EjecutarCrear()
+    {
+        try
+        {
+            var payload = new
+            {
+                PalabraEspanol = formEspañol,
+                CodigoPalabra = formCodigo,
+                Ingles = formIngles,
+                Frances = formFrances,
+                Aleman = formAleman
+            };
+
+            var respuesta = await Http.PostAsJsonAsync("api/Palabras", payload);
+            if (respuesta.IsSuccessStatusCode)
+            {
+                mensajeOperacion = "✅ Palabra y traducciones registradas con éxito.";
+                formEspañol = string.Empty;
+                formCodigo = string.Empty;
+                formIngles = string.Empty;
+                formFrances = string.Empty;
+                formAleman = string.Empty;
+            }
+            else
+            {
+                mensajeOperacion = "❌ Error al registrar la palabra.";
+            }
+        }
+        catch { mensajeOperacion = "❌ Error de conexión."; }
+    }
+
+    private async Task BuscarPorTexto()
+    {
+        try
+        {
+            mensajeOperacion = null;
+            
+            var response = await Http.GetAsync($"api/Palabras/espanol/{textoBusqueda}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                palabraEncontrada = await response.Content.ReadFromJsonAsync<PalabraDto>();
+                if (palabraEncontrada != null)
+                {
+                    formEspañol = palabraEncontrada.PalabraEspanol;
+                    formCodigo = palabraEncontrada.CodigoPalabra;
+                }
+            }
+            else
+            {
+                mensajeOperacion = "❌ No se encontró la palabra en el sistema.";
+                palabraEncontrada = null;
+            }
+        }
+        catch (Exception ex)
+        {
+            mensajeOperacion = $"❌ Error: {ex.Message}";
+            palabraEncontrada = null;
+        }
+    }
+
+    private async Task EjecutarModificar()
+    {
+        if (palabraEncontrada == null) return;
+
+        try
+        {
+            var payload = new
+            {
+                PalabraEspanol = formEspañol,
+                CodigoPalabra = formCodigo,
+                Ingles = formIngles,
+                Frances = formFrances,
+                Aleman = formAleman
+            };
+
+            var respuesta = await Http.PutAsJsonAsync($"api/Palabras/{palabraEncontrada.IdPalabra}", payload);
+            if (respuesta.IsSuccessStatusCode)
+            {
+                mensajeOperacion = "✅ Palabra actualizada con éxito.";
+                palabraEncontrada = null;
+                textoBusqueda = string.Empty;
+            }
+            else
+            {
+                mensajeOperacion = "❌ Error al actualizar.";
+            }
+        }
+        catch { mensajeOperacion = "❌ Error de conexión."; }
+    }
+
+    private async Task EjecutarEliminar()
+    {
+        if (palabraEncontrada == null) return;
+
+        try
+        {
+            var respuesta = await Http.DeleteAsync($"api/Palabras/{palabraEncontrada.IdPalabra}");
+            if (respuesta.IsSuccessStatusCode)
+            {
+                mensajeOperacion = "✅ Palabra eliminada con éxito.";
+                palabraEncontrada = null;
+                textoBusqueda = string.Empty;
+            }
+            else
+            {
+                mensajeOperacion = "❌ Error al eliminar.";
+            }
+        }
+        catch { mensajeOperacion = "❌ Error de conexión."; }
+    }
+}

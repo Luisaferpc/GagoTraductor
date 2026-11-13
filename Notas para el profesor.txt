@@ -1,0 +1,26 @@
+Luisa Fernanda Pérez Cardona
+Estiven Alexis Sanchez Restrepo
+
+User: admin_gago
+Password: Admin123*
+
+User: carlos_dev
+Password:  Pass2026
+
+Palabras inyectadas
+
+1	Casa	P001
+2	Perro	P002
+3	Gato	P003
+4	Libro	P004
+5	Agua	P005
+6	Comida	P006
+7	Escuela	P007
+8	Amigo	P008
+9	Familia	P009
+10	Trabajo	P010
+11	Automóvil	P011
+12	Ciudad	P012
+13	Árbol	P013
+14	Feliz	P014
+15	Sol	P015

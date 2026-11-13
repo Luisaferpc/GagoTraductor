@@ -7,8 +7,16 @@
       "RelativeMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|solutionrelative:gagotranslate\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\gagotranslate\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|solutionrelative:gagotranslate\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\gagotranslate\\frmconsultarpalabra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|solutionrelative:gagotranslate\\frmconsultarpalabra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\gagotranslate\\frmregistrarpalabra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|solutionrelative:gagotranslate\\frmregistrarpalabra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\gagotranslate\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,20 +27,12 @@
       "RelativeMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|solutionrelative:gagotranslate\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\gagotranslate\\frmregistrarpalabra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|solutionrelative:gagotranslate\\frmregistrarpalabra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\gagotranslate\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|solutionrelative:gagotranslate\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\gagotranslate\\frmconsultarpalabra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|solutionrelative:gagotranslate\\frmconsultarpalabra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\gagotranslate\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8312B3BF-2935-4393-BF51-1EDB8AD403A1}|GagoTranslate\\GagoTranslate.csproj|solutionrelative:gagotranslate\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,29 +50,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FrmRegistrarPalabra.cs [Dise\u00F1o]",
+              "DocumentIndex": 3,
+              "Title": "FrmRegistrarPalabra.cs [Design]",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\GagoTranslate\\FrmRegistrarPalabra.cs",
               "RelativeDocumentMoniker": "GagoTranslate\\FrmRegistrarPalabra.cs",
-              "ToolTip": "C:\\Users\\pator\\Desktop\\Traductor - Proyecto Final\\GagoTranslate\\GagoTranslate\\FrmRegistrarPalabra.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\..\\..\\pator\\Desktop\\Traductor - Proyecto Final\\GagoTranslate\\GagoTranslate\\FrmRegistrarPalabra.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\GagoTranslate\\FrmRegistrarPalabra.cs [Design]",
+              "RelativeToolTip": "GagoTranslate\\FrmRegistrarPalabra.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-07T03:39:07.203Z"
+              "WhenOpened": "2026-11-07T03:39:07.203Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmConsultarPalabra.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\GagoTranslate\\FrmConsultarPalabra.cs",
+              "RelativeDocumentMoniker": "GagoTranslate\\FrmConsultarPalabra.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\GagoTranslate\\FrmConsultarPalabra.cs [Design]",
+              "RelativeToolTip": "GagoTranslate\\FrmConsultarPalabra.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-07T03:05:55.883Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FrmConsultarPalabra.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\GagoTranslate\\FrmConsultarPalabra.cs",
-              "RelativeDocumentMoniker": "GagoTranslate\\FrmConsultarPalabra.cs",
-              "ToolTip": "C:\\Users\\pator\\Desktop\\Traductor - Proyecto Final\\GagoTranslate\\GagoTranslate\\FrmConsultarPalabra.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\..\\..\\pator\\Desktop\\Traductor - Proyecto Final\\GagoTranslate\\GagoTranslate\\FrmConsultarPalabra.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-07T03:05:55.883Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "FrmLogin.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\GagoTranslate\\FrmLogin.cs",
               "RelativeDocumentMoniker": "GagoTranslate\\FrmLogin.cs",
@@ -97,7 +99,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "FrmPrincipal.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\GagoTranslate\\FrmPrincipal.cs",
               "RelativeDocumentMoniker": "GagoTranslate\\FrmPrincipal.cs",
@@ -109,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "FrmPrincipal.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\GagoTranslate\\FrmPrincipal.cs",
               "RelativeDocumentMoniker": "GagoTranslate\\FrmPrincipal.cs",
@@ -120,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "FrmConsultarPalabra.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\GagoTranslate\\FrmConsultarPalabra.cs",
               "RelativeDocumentMoniker": "GagoTranslate\\FrmConsultarPalabra.cs",
@@ -128,11 +130,12 @@
               "RelativeToolTip": "GagoTranslate\\FrmConsultarPalabra.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-07T03:15:49.239Z"
+              "WhenOpened": "2026-11-07T03:15:49.239Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\GagoTranslate\\GagoTranslate\\GagoTranslate\\Program.cs",
               "RelativeDocumentMoniker": "GagoTranslate\\Program.cs",

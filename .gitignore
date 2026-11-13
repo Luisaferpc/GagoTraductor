@@ -1,0 +1,8 @@
+# Dependencias y compilación de Visual Studio
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+x64/
+x86/

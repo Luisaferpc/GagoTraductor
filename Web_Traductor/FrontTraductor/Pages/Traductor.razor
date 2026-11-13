@@ -1,0 +1,108 @@
+﻿@page "/traductor"
+@using FrontTraductor.Servicios
+@inject PalabraServicios _palabraServicios
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">GagoTranslate - Módulo de Traducción</h4>
+                </div>
+                <div class="card-body">
+
+                    <!-- Formulario de entrada -->
+                    <div class="mb-3">
+                        <label for="inputTraducir" class="form-label">Palabra en Español:</label>
+                        <input type="text" id="inputTraducir" class="form-control mb-3" @bind="palabraIngresada" placeholder="Ej. Casa, Perro..." @onkeyup="HandleKeyUp" />
+
+                        <label for="selectIdioma" class="form-label">Idioma de destino:</label>
+                        <select id="selectIdioma" class="form-select mb-3" @bind="idiomaIngresado">
+                            <option value="EN">Inglés (EN)</option>
+                            <option value="FR">Francés (FR)</option>
+                            <option value="AL">Alemán (AL)</option>
+                        </select>
+
+                        <button class="btn btn-success w-100" @onclick="EjecutarTraduccion">Traducir</button>
+                    </div>
+
+                    <!-- Resultados o estados -->
+                    @if (cargando)
+                    {
+                        <div class="text-center my-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Traduciendo...</span>
+                            </div>
+                            <p class="text-muted mt-2">Traduciendo en el sistema...</p>
+                        </div>
+                    }
+                    else if (resultado != null)
+                    {
+                        <div class="alert alert-success mt-4">
+                            <h5 class="alert-heading">¡Traducción exitosa!</h5>
+                            <hr>
+                            <p><strong>Original (@resultado.PalabraEspanol):</strong></p>
+                            <h3 class="text-dark">@resultado.Traduccion</h3>
+                            <p class="text-muted small mb-0">Idioma: @resultado.Idioma</p>
+                        </div>
+                    }
+                    else if (errorMensaje != null)
+                    {
+                        <div class="alert alert-warning mt-4">
+                            <strong>Aviso:</strong> @errorMensaje
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string palabraIngresada = string.Empty;
+    private string idiomaIngresado = "EN"; // Por defecto inglés
+    private ResultadoTraduccionDto? resultado;
+    private string? errorMensaje;
+    private bool cargando = false;
+
+    private async Task EjecutarTraduccion()
+    {
+        if (string.IsNullOrWhiteSpace(palabraIngresada))
+        {
+            errorMensaje = "Por favor, ingresa una palabra en español para traducir.";
+            resultado = null;
+            return;
+        }
+
+        cargando = true;
+        errorMensaje = null;
+        resultado = null;
+
+        try
+        {
+            resultado = await _palabraServicios.ObtenerTraduccionAsync(palabraIngresada.Trim(), idiomaIngresado);
+
+            if (resultado == null)
+            {
+                errorMensaje = $"No se encontró una traducción para '{palabraIngresada}' en el idioma seleccionado ({idiomaIngresado}).";
+            }
+        }
+        catch (Exception)
+        {
+            errorMensaje = "Ocurrió un error al conectar con el servidor de traducción.";
+        }
+        finally
+        {
+            cargando = false;
+        }
+    }
+
+    private async Task HandleKeyUp(Microsoft.AspNetCore.Components.Web.KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await EjecutarTraduccion();
+        }
+    }
+}

@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<RootNamespace>GagoTranslate</RootNamespace>
+		<Nullable>disable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Web_Traductor\Gago.Library\Gago.Library.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="FrmConsultarPalabra.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FrmEliminarPalabra.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FrmLogin.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FrmModificarPalabra.cs" />
+		<Compile Update="FrmPrincipal.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FrmRegistrarPalabra.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FrmTraducir.cs">
+			<SubType>Form</SubType>
+		</Compile>
+	</ItemGroup>
+
+</Project>

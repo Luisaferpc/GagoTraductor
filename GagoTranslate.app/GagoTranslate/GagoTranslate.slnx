@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Gago.Library/Gago.Library.csproj" />
+  <Project Path="GagoTranslate.App/GagoTranslate.App.csproj" Id="1014d7d2-3e0f-466b-bd04-32e19144899a" />
+</Solution>

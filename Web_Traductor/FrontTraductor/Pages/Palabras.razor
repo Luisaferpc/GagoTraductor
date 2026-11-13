@@ -1,0 +1,112 @@
+﻿@page "/palabras"
+@using FrontTraductor.Servicios
+@inject PalabraServicios _palabraServicios
+<h3>Gestión de Palabras - GagoTranslate</h3>
+
+<div class="card shadow-sm p-4 mb-4">
+    <div class="row g-3 align-items-end">
+        <!-- Selector de Criterio de Búsqueda -->
+        <div class="col-md-3">
+            <label for="tipoBusqueda" class="form-label">Buscar por:</label>
+            <select id="tipoBusqueda" class="form-select" @bind="tipoBusqueda">
+                <option value="espanol">Palabra en Español</option>
+                <option value="codigo">Código de Palabra</option>
+            </select>
+        </div>
+
+        <!-- Campo de Texto -->
+        <div class="col-md-7">
+            <label for="searchBox" class="form-label">Término de búsqueda:</label>
+            <input type="text" id="searchBox" class="form-control" @bind="searchTerm" placeholder="@(tipoBusqueda == "espanol" ? "Ej. Casa, Perro..." : "Ej. P001...")" @onkeyup="HandleKeyUp" />
+        </div>
+
+        <!-- Botón de Acción -->
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100" @onclick="BuscarPalabra">Buscar</button>
+        </div>
+    </div>
+</div>
+
+@if (errorMessage != null)
+{
+    <div class="alert alert-danger mt-3">
+        <strong>Aviso:</strong> @errorMessage
+    </div>
+}
+else if (palabraEncontrada != null)
+{
+    <div class="alert alert-success mt-3 shadow-sm">
+        <h5 class="alert-heading">¡Resultado encontrado!</h5>
+        <hr>
+        <p><strong>Palabra en Español:</strong> @palabraEncontrada.PalabraEspanol</p>
+        <p><strong>Código de Registro:</strong> @palabraEncontrada.CodigoPalabra</p>
+        <p><strong>ID Interno:</strong> @palabraEncontrada.IdPalabra</p>
+    </div>
+}
+else if (buscando)
+{
+    <div class="text-center my-3">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Buscando...</span>
+        </div>
+        <p class="text-muted mt-1">Consultando base de datos...</p>
+    </div>
+}
+
+@code {
+    private string tipoBusqueda = "espanol"; // Por defecto busca por español
+    private string searchTerm = string.Empty;
+    private PalabraDto? palabraEncontrada;
+    private string? errorMessage;
+    private bool buscando = false;
+
+    private async Task BuscarPalabra()
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            errorMessage = "Por favor, ingresa un término de búsqueda.";
+            palabraEncontrada = null;
+            return;
+        }
+
+        buscando = true;
+        errorMessage = null;
+        palabraEncontrada = null;
+
+        try
+        {
+            if (tipoBusqueda == "espanol")
+            {
+                // Usa el método existente por texto en español
+                palabraEncontrada = await _palabraServicios.ObtenerPorEspanolAsync(searchTerm.Trim());
+            }
+            else
+            {
+                // Método por código 
+                palabraEncontrada = await _palabraServicios.ObtenerPorCodigoAsync(searchTerm.Trim());
+            }
+
+            if (palabraEncontrada == null)
+            {
+                errorMessage = "No se encontró ninguna coincidencia en la base de datos.";
+            }
+        }
+        catch (Exception)
+        {
+            errorMessage = "Ocurrió un error al realizar la consulta con el servidor.";
+            palabraEncontrada = null;
+        }
+        finally
+        {
+            buscando = false;
+        }
+    }
+
+    private async Task HandleKeyUp(Microsoft.AspNetCore.Components.Web.KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await BuscarPalabra();
+        }
+    }
+}

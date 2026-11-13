@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../GagoTranslate.app/GagoTranslate/GagoTranslate.App/GagoTranslate.App.csproj" />
+  <Project Path="BackTraductor/BackTraductor.csproj" />
+  <Project Path="FrontTraductor/FrontTraductor.csproj" />
+  <Project Path="Gago.Library/Gago.Library.csproj" />
+</Solution>
